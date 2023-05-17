@@ -1,5 +1,6 @@
 package com.spring.boot.musicAlbum.board.model;
 
+import com.spring.boot.musicAlbum.login.model.Account;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -21,4 +22,8 @@ public class BoardDTO {
 
     @Column(nullable = false, updatable = false, name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "account_id")
+    private Account account;
 }

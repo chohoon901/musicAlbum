@@ -1,6 +1,5 @@
 package com.spring.boot.musicAlbum.login.controller;
 
-import com.spring.boot.musicAlbum.board.model.BoardDTO;
 import com.spring.boot.musicAlbum.login.model.Account;
 import com.spring.boot.musicAlbum.login.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import software.amazon.awssdk.services.s3.S3Client;
 
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping

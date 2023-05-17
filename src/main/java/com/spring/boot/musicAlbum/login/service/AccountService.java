@@ -1,8 +1,7 @@
 package com.spring.boot.musicAlbum.login.service;
 
-import com.spring.boot.musicAlbum.board.model.BoardDTO;
-import com.spring.boot.musicAlbum.login.model.Account;
 import com.spring.boot.musicAlbum.login.repository.AccountRepository;
+import com.spring.boot.musicAlbum.login.model.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -12,7 +11,6 @@ import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.GetObjectRequest;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -35,7 +33,7 @@ public class AccountService {
     }
 
     public Account addAccount(Account account, MultipartFile imageFile) throws IOException {
-        String bucketName = "project-profile-image";
+        String bucketName = "musicalbum1";
         if (imageFile != null) {
             // 새로운 파일 이름 - 파일이 겹칠 수 있으니까
             String newFileName = System.currentTimeMillis() + "-" + imageFile.getOriginalFilename();
@@ -52,7 +50,7 @@ public class AccountService {
     }
 
     public byte[] loadFile(String key) throws IOException {
-        String bucketName = "project-profile-image";
+        String bucketName = "musicalbum1";
         GetObjectRequest request = GetObjectRequest.builder()
                 .bucket(bucketName)
                 .key(key)
@@ -70,4 +68,7 @@ public class AccountService {
     }
 
 
+    public Account getAccountByUsername(String currentUserName) {
+        return accountRepository.findByUsername(currentUserName);
+    }
 }

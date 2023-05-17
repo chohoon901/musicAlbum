@@ -1,9 +1,9 @@
 package com.spring.boot.musicAlbum.board.service;
 
+import com.spring.boot.musicAlbum.board.exception.UserAuthorizeException;
 import com.spring.boot.musicAlbum.board.model.BoardDTO;
 import com.spring.boot.musicAlbum.board.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import software.amazon.awssdk.core.sync.RequestBody;
@@ -12,7 +12,6 @@ import software.amazon.awssdk.services.s3.model.DeleteObjectRequest;
 import software.amazon.awssdk.services.s3.model.GetObjectRequest;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -33,6 +32,9 @@ public class BoardService {
         return boardRepository.findAll();
     }
 
+    public Object getAllBoardsWithAccount() {
+        return boardRepository.findAllWithAccount();
+    }
 
 //    @Value("${upload.path}")
 //    private String uploadPath;
@@ -40,7 +42,7 @@ public class BoardService {
     public void createBoard(BoardDTO boardDTO,
                              MultipartFile imageFile,
                              MultipartFile soundFile) throws IOException {
-        String bucketName = "project-file";
+        String bucketName = "musicalbum1";
         if (imageFile != null) {
             // 새로운 파일 이름 - 파일이 겹칠 수 있으니까
             String newFileName = System.currentTimeMillis() + "-" + imageFile.getOriginalFilename();
@@ -72,10 +74,11 @@ public class BoardService {
         boardRepository.save(boardDTO);
     }
 
+
     public void updateBoard(BoardDTO newBoard,
-                                MultipartFile imageFile,
-                                MultipartFile soundFile) throws IOException {
-        String bucketName = "project-file";
+                            MultipartFile imageFile,
+                            MultipartFile soundFile) throws IOException, UserAuthorizeException {
+        String bucketName = "musicalbum1";
         BoardDTO existedBoard = getBoardById(newBoard.getId());
         if (existedBoard == null) {
             throw new IllegalArgumentException("게시글이 존재하지 않습니다.");
@@ -120,12 +123,23 @@ public class BoardService {
         boardRepository.save(existedBoard);
     }
 
+    public void deleteBoard(Long id, String username) throws UserAuthorizeException {
+        BoardDTO boardDTO = boardRepository.findById(id).orElseThrow(() -> new UserAuthorizeException("Invalid post ID"));
+
+        if (!boardDTO.getAccount().getUsername().equals(username)) {
+            throw new UserAuthorizeException("권한이 없습니다.");
+        }
+
+        boardRepository.delete(boardDTO);
+    }
+
+
     public void deleteBoard(Long id) {
         boardRepository.deleteById(id);
     }
 
     public byte[] loadFile(String key) throws IOException {
-        String bucketName = "project-file";
+        String bucketName = "musicalbum1";
         GetObjectRequest request = GetObjectRequest.builder()
                 .bucket(bucketName)
                 .key(key)
@@ -134,7 +148,7 @@ public class BoardService {
     }
 
     public void deleteFileFromR2(String fileName) {
-        String bucketName = "project-file";
+        String bucketName = "musicalbum1";
         DeleteObjectRequest request = DeleteObjectRequest.builder()
                 .bucket(bucketName)
                 .key(fileName)

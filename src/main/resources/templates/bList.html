@@ -33,6 +33,7 @@
             <th>사진</th>
             <th>소리</th>
             <th>작성일</th>
+            <th>작성자</th>
             <th>기능</th>
         </tr>
         </thead>
@@ -54,6 +55,7 @@
                 <span th:if="${board.bSound == null}">-</span>
             </td>
             <td th:text="${board.createdAt}"></td>
+            <td th:text="${board.account.username}"></td>
             <td>
                 <a th:href="@{/bUpdate/{id}(id=${board.id})}" class="btn btn-primary btn-sm">Edit</a>
                 <a th:href="@{/delete/{id}(id=${board.id})}" class="btn btn-danger btn-sm">Delete</a>
