@@ -5,11 +5,16 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security5"
       layout:decorate="~{layout/default_layout}">
-
 <div layout:fragment="profile">
 
     <div class="card" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
+<!--        <div class="circular-image">-->
+<!--            <img th:if="${account.image != null}" th:src="@{'/upload/image/' + ${account.image}}" >-->
+<!--            <span th:if="${account.image == null}">이미지를 등록해주세요.</span>-->
+<!--        </div>-->
+        <img class="card-img-top" th:if="${account.image != null}" th:src="@{'/upload/image/' + ${account.image}}" >
+        <span th:if="${account.image == null}">이미지를 등록해주세요.</span>
+
         <div class="card-body">
             <h5 class="card-title" th:text="${#authentication.principal.username}">님! 환영합니다.</h5>
             <div th:with="role = ${#authentication.authorities.![authority].get(0)}">
@@ -32,7 +37,6 @@
                 </form>
             </div>
     </div>
-
 <!--    <div th:with="role = ${#authentication.authorities.![authority].get(0)}">-->
 <!--        <div th:if="${role == 'ROLE_normal'}">-->
 <!--            <div>-->
