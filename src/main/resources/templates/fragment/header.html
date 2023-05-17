@@ -9,7 +9,7 @@
 <div class="header">
 
     <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
+        <div class="container-fluid custom_container">
             <a class="navbar-brand" href="#">로고</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -36,6 +36,10 @@
                         </ul>
                     </li>
                 </ul>
+                <form class="d-flex" action="/search" method="GET">
+                    <input class="form-control me-2" type="search" placeholder="검색어 입력" aria-label="Search" name="q">
+                    <button class="btn btn-outline-success" type="submit">검색</button>
+                </form>
             </div>
         </div>
         </nav>

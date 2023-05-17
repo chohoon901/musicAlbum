@@ -15,6 +15,7 @@
     </div>
     <br>
     <button onclick="location.href = '/'">메인으로 가기</button>
+    <button th:if="${msg == '권한이 없습니다.'}" onclick="location.href = '/bList'">게시판으로 가기</button>
 </div>
 
 </html>

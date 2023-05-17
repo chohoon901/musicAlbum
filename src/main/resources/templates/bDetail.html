@@ -47,7 +47,34 @@
     <a th:href="@{/bUpdate/{id}(id=${board.id})}" class="btn btn-primary btn-sm">Edit</a>
     <button type="button" onclick="location.href='/bList'">Home</button>
     </form>
+    <h2>Comments</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Content</th>
+            <th>Created At</th>
+            <th>Action</th>
+        </tr>
+        <tr th:each="comment : ${board.comments}">
+            <td th:text="${comment.id}"></td>
+            <td th:text="${comment.content}"></td>
+            <td th:text="${comment.createdAt}"></td>
+            <td>
+                <a th:href="@{/comment/delete/{commentId}(commentId=${comment.id})}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+    </table>
 
+    <!-- 댓글 작성 폼 -->
+    <h2>Add Comment</h2>
+    <form th:action="@{/comment/add/{boardId}(boardId=${board.Id})}" method="post">
+        <input type="text" name="content" placeholder="Enter your comment" required/>
+        <button type="submit">Submit</button>
+    </form>
+
+    <br>
+    <a th:href="@{/bUpdate/{id}(id=${board.Id})}" class="btn btn-primary btn-sm">Edit</a>
+    <button type="button" onclick="location.href='/bList'">Home</button>
 </div>
 
 </html>

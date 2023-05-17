@@ -1,10 +1,13 @@
 package com.spring.boot.musicAlbum.board.model;
 
+import com.spring.boot.musicAlbum.comment.model.Comment;
 import com.spring.boot.musicAlbum.login.model.Account;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -26,4 +29,8 @@ public class BoardDTO {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "account_id")
     private Account account;
+
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
 }
