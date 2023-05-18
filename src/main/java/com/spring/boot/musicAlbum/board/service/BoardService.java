@@ -156,4 +156,15 @@ public class BoardService {
         s3Client.deleteObject(request);
     }
 
+    public List<BoardDTO> getTitleBySearch(String search) {
+        return boardRepository.getTitleBySearch(search);
+    }
+
+    public Object getGenreBySearch(String search) {
+        return boardRepository.getGenreBySearch(search);
+    }
+
+    public Object getAuthorBySearch(String search) {
+        return boardRepository.getAuthorBySearch(search);
+    }
 }

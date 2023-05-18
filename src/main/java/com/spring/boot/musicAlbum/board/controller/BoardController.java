@@ -61,6 +61,22 @@ public class BoardController {
         return "bList";
     }
 
+    @GetMapping("/search")
+    public String searchBList(Model model,
+                              @RequestParam("search") String search,
+                              @RequestParam("option") String option) {
+        if(option=="title"){
+            model.addAttribute("boards", boardService.getTitleBySearch(search));
+        }
+        else if(option=="genre"){
+            model.addAttribute("boards", boardService.getGenreBySearch(search));
+        }
+        else if(option=="author"){
+            model.addAttribute("boards", boardService.getAuthorBySearch(search));
+        }
+        return "bList";
+    }
+
 
     @GetMapping("/bDetail/{id}")
     public String getBoard(@PathVariable Long id, Model model) {

@@ -7,13 +7,13 @@ html, body {
     background-color: #1f4e5f;
     color: #A3C6C4;
     text-align: center;
-    height : 100px;
+    height : 250px;
 }
 
 .content_container {
     min-height: calc(100vh - 120px);
     padding: 20px;
-    height: 500px;
+    height: 450px;
     background-color: #f4f7f7;
 }
 
@@ -38,7 +38,7 @@ html, body {
 }
 
 .navbar {
-  height: 100px; /* 원하는 높이로 설정 */
+  height: 250px; /* 원하는 높이로 설정 */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -62,7 +62,25 @@ html, body {
     height: 500px;
     padding: 20px;
 }
-.custom_container{
+
+.container-fluid.custom_container{
+    height: 100%;
 }
 
+#search-form {
+    display: none;
+}
 
+#search-dropdown-form {
+    height: 61.6px;
+}
+
+#option {
+    height: 100%;
+
+}
+
+.btn-outline-success {
+    display: flex;
+    align-items: center;
+}
