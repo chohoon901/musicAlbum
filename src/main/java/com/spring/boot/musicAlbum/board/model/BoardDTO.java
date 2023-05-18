@@ -19,6 +19,7 @@ public class BoardDTO {
     private String bTitle;
     private String bContent;
     private String bUserID;
+    private String bGenre;
     private String bPassword;
     private String bImage;
     private String bSound;

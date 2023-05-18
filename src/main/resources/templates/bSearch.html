@@ -27,12 +27,14 @@
     </style>
 </head>
 <div layout:fragment="content">
+    <div class="wrapper">
     <h1>게시판</h1>
     <table>
         <thead>
         <tr>
             <th>번호</th>
             <th>제목</th>
+            <th>장르</th>
             <th>사진</th>
             <th>소리</th>
             <th>작성일</th>
@@ -49,6 +51,7 @@
                     <span th:text="${board.bTitle}"></span>
                 </a>
             </td>
+            <td th:text="${board.bGenre}"></td>
             <td>
                 <img th:if="${board.bImage != null}" th:src="@{'/upload/' + ${board.bImage}}" class="img-fluid" alt="" width="50px">
                 <span th:if="${board.bImage == null}">-</span>
@@ -68,5 +71,6 @@
     </table>
     <button type="button" onclick="location.href='/bAdd'">글 작성</button>
     <p th:text="${msg}"></p>
+</div>
 </div>
 </html>

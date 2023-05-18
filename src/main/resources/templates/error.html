@@ -6,6 +6,7 @@
 
 
 <div layout:fragment="content">
+    <div class="wrapper">
     <!-- error.html 을 지정해놓으면 '링크가 없는 경우' 다 이쪽으로 기본 이동 -->
     <h2>Error</h2>
     <div>
@@ -17,5 +18,5 @@
     <button onclick="location.href = '/'">메인으로 가기</button>
     <button th:if="${msg == '권한이 없습니다.'}" onclick="location.href = '/bList'">게시판으로 가기</button>
 </div>
-
+</div>
 </html>

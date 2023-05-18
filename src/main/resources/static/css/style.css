@@ -1,6 +1,7 @@
 html, body {
     margin: 0;
     padding: 0;
+    height: 100%;
 }
 
 .header {
@@ -11,10 +12,18 @@ html, body {
 }
 
 .content_container {
-    min-height: calc(100vh - 120px);
     padding: 20px;
     height: 450px;
     background-color: #f4f7f7;
+}
+
+.wrapper {
+    height:100%;
+}
+
+
+.container-fluid{
+    height:100%;
 }
 
 .footer {
@@ -63,9 +72,6 @@ html, body {
     padding: 20px;
 }
 
-.container-fluid.custom_container{
-    height: 100%;
-}
 
 #search-form {
     display: none;

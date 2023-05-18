@@ -9,6 +9,7 @@
 </head>
 
 <div layout:fragment="content">
+    <div class="wrapper">
     <!--  여기에다가 추가하면 됨 -->
     <!--  head, body 등등 사용할 필요없음, 부트스트랩, css 링크 되어있음-->
     <h1 th:text="${board.bTitle}">Board Detail</h1>
@@ -20,6 +21,10 @@
         <tr>
             <th>Title</th>
             <td th:text="${board.bTitle}"></td>
+        </tr>
+        <tr>
+            <th>Genre</th>
+            <td th:text="${board.bGenre}"></td>
         </tr>
         <tr>
             <th>Content</th>
@@ -71,10 +76,25 @@
         <input type="text" name="content" placeholder="Enter your comment" required/>
         <button type="submit">Submit</button>
     </form>
+    <script>
+        const form = document.querySelector('form');
+        const wrapper = document.querySelector('.wrapper');
+        const cf = document.querySelector('.container-fluid');
+
+        form.addEventListener('submit', (event) => {
+          event.preventDefault();
+          increaseWrapperHeight();
+        });
+
+        function increaseWrapperHeight() {
+          const currentHeight = cf.offsetHeight;
+          wrapper.style.height = currentHeight + 10 + 'px';
+        }
+    </script>
 
     <br>
     <a th:href="@{/bUpdate/{id}(id=${board.Id})}" class="btn btn-primary btn-sm">Edit</a>
     <button type="button" onclick="location.href='/bList'">Home</button>
 </div>
-
+</div>
 </html>

@@ -6,6 +6,7 @@
 
 
 <div layout:fragment="content">
+    <div class="wrapper">
     <!--  여기에다가 추가하면 됨 -->
     <!--  head, body 등등 사용할 필요없음, 부트스트랩, css 링크 되어있음-->
     <h2>Edit the board</h2>
@@ -14,6 +15,10 @@
         <div>
             <label for="bTitle">Title:</label>
             <input type="text" id="bTitle" name="bTitle" th:value="${board.bTitle}">
+        </div>
+        <div>
+            <label for="bGenre">Genre:</label>
+            <input type="text" id="bGenre" name="bGenre" th:value="${board.bGenre}">
         </div>
         <div>
             <label for="bContent">Content:</label>
@@ -30,6 +35,7 @@
         <button type="submit">Save</button>
     </form>
     <a href="/bList">Back to Board List</a>
+</div>
 </div>
 
 </html>

@@ -87,6 +87,7 @@ public class BoardService {
         // 업데이트할 속성들을 갱신
         existedBoard.setBTitle(newBoard.getBTitle());
         existedBoard.setBContent(newBoard.getBContent());
+        existedBoard.setBContent(newBoard.getBGenre());
         existedBoard.setCreatedAt(newBoard.getCreatedAt());
 
 
