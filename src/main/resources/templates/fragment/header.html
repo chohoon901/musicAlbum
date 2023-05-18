@@ -9,8 +9,10 @@
 <div class="header">
 
     <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid custom_container">
-            <a class="navbar-brand" href="#">로고</a>
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/index">
+                <img src="imgs/logo.png" class="logo-image">
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -25,24 +27,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/bList">자유게시판</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            추가기능
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">기능1</a></li>
-                            <li><a class="dropdown-item" href="#">기능2</a></li>
-                            <li><a class="dropdown-item" href="#">기능3</a></li>
-                        </ul>
                     </li>
                 </ul>
             </div>
-<!--            <div class="col" id="search-form">-->
-<!--                <form class="d-flex" action="/search" method="GET">-->
-<!--                    <input class="form-control me-2" type="search" placeholder="검색" aria-label="검색" name="search">-->
-<!--                    <button class="btn btn-outline-success" type="submit">검색</button>-->
-<!--                </form>-->
-<!--            </div>-->
             <div class="col" id="search-form">
                 <form class="d-flex" action="/search" method="GET">
                     <input class="form-control me-2" type="search" placeholder="검색" aria-label="검색" name="search">
@@ -60,6 +47,17 @@
                     </button>
                 </form>
             </div>
+<!--            <div sec:authorize="isAuthenticated()">-->
+<!--                <form id="profileForm" th:action="@{/logout}" method="post">-->
+<!--                    <button class="btn btn-primary">로그아웃</button>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--            <div sec:authorize="!isAuthenticated()">-->
+<!--                <form th:action="@{/home}" method="post">-->
+<!--                    <button type="submit" class="btn btn-primary">로그인</button>-->
+<!--                </form>-->
+<!--            </div>-->
+
         </div>
         </nav>
 <!--    </div>-->
